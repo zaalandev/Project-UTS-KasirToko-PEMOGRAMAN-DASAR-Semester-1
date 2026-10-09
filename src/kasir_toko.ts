@@ -46,15 +46,15 @@ rl.question("Masukkan nama pelanggan: ", (namaPelanggan) => {
             return;
         }
 
-        // Kondisi Jika Bagian Input Kategori Di Input Bukan Angka
-        if (isNaN(Number(inputKategori))){
-            console.log("Tidak Boleh Input Huruf");
-            rl.close();
-            return;
-        }
+        // // Kondisi Jika Bagian Input Kategori Di Input Bukan Angka
+        // if (isNaN(Number(inputKategori))){
+        //     console.log("Tidak Boleh Input Huruf");
+        //     rl.close();
+        //     return;
+        // }
 
         // Kondisi Jika Bagian Input Kategori Menginputkan Lebih Dari Case Nya
-        if (Number(inputKategori) > 3) {
+        if (!Number.isInteger(Number(inputKategori)) || Number(inputKategori) < 1 || Number(inputKategori) > 3) {
             console.log("Tidak Valid");
             rl.close();
             return;
@@ -126,6 +126,12 @@ rl.question("Masukkan nama pelanggan: ", (namaPelanggan) => {
                     return;
                 }
 
+                if ((Number(inputHarga) <= 0)){
+                    console.log("Harga Barang Tidak Boleh Negatif");
+                    rl.close();
+                    return;
+                }
+
 
                 // Mengubah harga menjadi number
                 const harga: number = Number(inputHarga);
@@ -153,11 +159,12 @@ rl.question("Masukkan nama pelanggan: ", (namaPelanggan) => {
                     // Mengubah jumlah menjadi number
                     const jumlah: number = Number(inputJumlah);
 
-                    // if (!Number.isInteger(jumlah)){
-                    //     console.log("Jumlah Barang harus Bilangan Bulat");
-                    //     rl.close();
-                    //     return;
-                    // }
+                    // Kondisi Jika Bagian Input Jumlah Di Input Bukan Bilangan Bulat atau Kurang Dari Sama Dengan 0
+                    if (!Number.isInteger(jumlah) || jumlah <= 0){
+                        console.log("Jumlah Barang harus Bilangan Bulat dan Lebih dari 0");
+                        rl.close();
+                        return;
+                    }
 
                     // Menghitung subtotal
                     let subtotal: number = harga * jumlah;
@@ -165,12 +172,6 @@ rl.question("Masukkan nama pelanggan: ", (namaPelanggan) => {
                     // Variabel untuk menyimpan diskon
                     let diskon: number = 0;
 
-                    // Memeriksa apakah jumlah barang valid
-                    if (jumlah <= 0) {
-                        console.log("Jumlah barang tidak valid.");
-                        rl.close();
-                        return;
-                    }
 
 
                     // Meminta status member
@@ -256,19 +257,27 @@ rl.question("Masukkan nama pelanggan: ", (namaPelanggan) => {
                                 return;
                             }
 
-                            // Kondisi Jika Bagian Input Pembayaran Di Input Bukan Angka
-                            if (isNaN(Number(inputPembayaran))){
-                                console.log("Tidak Boleh Input Huruf")
-                                rl.close();
-                                return;
-                            }
+                            // // Kondisi Jika Bagian Input Pembayaran Di Input Bukan Angka
+                            // if (isNaN(Number(inputPembayaran))){
+                            //     console.log("Tidak Boleh Input Huruf")
+                            //     rl.close();
+                            //     return;
+                            // }
 
-                            // Kondisi Jika Bagian Input Pembayaran Menginputkan Lebih Dari Case Nya
-                            if (Number(inputPembayaran) > 3) {
+                            // // Kondisi Jika Bagian Input Pembayaran Menginputkan Lebih Dari Case Nya
+                            // if (Number(inputPembayaran) > 3) {
+                            //     console.log("Tidak Valid");
+                            //     rl.close();
+                            //     return;
+                            // }
+
+                            // Kondisi Jika Bagian Input Kategori Menginputkan Lebih Dari Case Nya
+                            if (!Number.isInteger(Number(inputPembayaran)) || Number(inputPembayaran) < 1 || Number(inputPembayaran) > 3) {
                                 console.log("Tidak Valid");
                                 rl.close();
                                 return;
                             }
+
 
                             // Mengubah input pembayaran menjadi number
                             const pembayaran = Number(inputPembayaran);

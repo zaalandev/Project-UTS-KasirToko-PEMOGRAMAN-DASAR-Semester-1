@@ -71,14 +71,14 @@ rl.question("Masukkan nama pelanggan: ", (namaPelanggan) => {
             rl.close();
             return;
         }
-        // Kondisi Jika Bagian Input Kategori Di Input Bukan Angka
-        if (isNaN(Number(inputKategori))) {
-            console.log("Tidak Boleh Input Huruf");
-            rl.close();
-            return;
-        }
+        // // Kondisi Jika Bagian Input Kategori Di Input Bukan Angka
+        // if (isNaN(Number(inputKategori))){
+        //     console.log("Tidak Boleh Input Huruf");
+        //     rl.close();
+        //     return;
+        // }
         // Kondisi Jika Bagian Input Kategori Menginputkan Lebih Dari Case Nya
-        if (Number(inputKategori) > 3) {
+        if (!Number.isInteger(Number(inputKategori)) || Number(inputKategori) < 1 || Number(inputKategori) > 3) {
             console.log("Tidak Valid");
             rl.close();
             return;
@@ -135,6 +135,11 @@ rl.question("Masukkan nama pelanggan: ", (namaPelanggan) => {
                     rl.close();
                     return;
                 }
+                if ((Number(inputHarga) < 0)) {
+                    console.log("Harga Barang Tidak Boleh Negatif");
+                    rl.close();
+                    return;
+                }
                 // Mengubah harga menjadi number
                 const harga = Number(inputHarga);
                 // Meminta jumlah barang
@@ -153,11 +158,11 @@ rl.question("Masukkan nama pelanggan: ", (namaPelanggan) => {
                     }
                     // Mengubah jumlah menjadi number
                     const jumlah = Number(inputJumlah);
-                    // if (!Number.isInteger(jumlah)){
-                    //     console.log("Jumlah Barang harus Bilangan Bulat");
-                    //     rl.close();
-                    //     return;
-                    // }
+                    if (!Number.isInteger(jumlah) || jumlah < 0) {
+                        console.log("Jumlah Barang harus Bilangan Bulat");
+                        rl.close();
+                        return;
+                    }
                     // Menghitung subtotal
                     let subtotal = harga * jumlah;
                     // Variabel untuk menyimpan diskon
@@ -278,13 +283,13 @@ rl.question("Masukkan nama pelanggan: ", (namaPelanggan) => {
                             console.log("Pelanggan     : " + namaPelanggan);
                             console.log("Kategori      : " + namaKategori);
                             console.log("Barang        : " + namaBarang);
-                            console.log("Harga         : Rp." + harga);
+                            console.log("Harga         : Rp" + harga);
                             console.log("Jumlah        : " + jumlah);
                             console.log("Member        : " + statusMember);
                             console.log("--------------------------------");
-                            console.log("Subtotal      : Rp." + subtotal);
-                            console.log("Diskon        : Rp." + diskon);
-                            console.log("Biaya Admin   : Rp." + biayaAdmin);
+                            console.log("Subtotal      : Rp" + subtotal);
+                            console.log("Diskon        : Rp" + diskon);
+                            console.log("Biaya Admin   : Rp" + biayaAdmin);
                             console.log("Pembayaran    : " + metodePembayaran);
                             console.log("--------------------------------");
                             console.log("TOTAL BAYAR   : Rp" + totalBayar);
